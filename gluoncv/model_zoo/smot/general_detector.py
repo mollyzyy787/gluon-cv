@@ -125,6 +125,7 @@ class GeneralDetector:
             real_tracking_indices = tracking_box_indices + tracking_box_classes * self._anchor_num
             ids, scores, detection_bboxes, detection_anchor_indices, tracking_results, anchors = self.net(
                 data_tensor.as_in_context(self.ctx), real_tracking_indices, tracking_box_weights)
+                # prediction = net(input)
 
             tracking_bboxes = tracking_results[:, [2, 3, 4, 5, 1]]
 

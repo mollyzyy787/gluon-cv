@@ -55,13 +55,13 @@ def gpu_iou(bbox_a_tensor, bbox_b_tensor):
 
     Returns
     -------
-
+    Computes the IOU of two bounding boxes
     """
     if bbox_a_tensor.shape[1] < 4 or bbox_b_tensor.shape[1] < 4:
         raise IndexError("Bounding boxes axis 1 must have at least length 4")
 
-    tl = mx.nd.maximum(bbox_a_tensor.reshape((bbox_a_tensor.shape[0], 1, -1))[:, :, :2], bbox_b_tensor[:, :2])
-    br = mx.nd.minimum(bbox_a_tensor.reshape((bbox_a_tensor.shape[0], 1, -1))[:, :, 2:4], bbox_b_tensor[:, 2:4])
+    tl = mx.nd.maximum(bbox_a_tensor.reshape((bbox_a_tensor.shape[0], 1, -1))[:, :, :2], bbox_b_tensor[:, :2])   #top left corner
+    br = mx.nd.minimum(bbox_a_tensor.reshape((bbox_a_tensor.shape[0], 1, -1))[:, :, 2:4], bbox_b_tensor[:, 2:4])  #bottom right corner
 
     valid = mx.nd.prod(tl < br, axis=2)
     area_i = mx.nd.prod(br - tl, axis=2) * valid

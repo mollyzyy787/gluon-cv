@@ -48,7 +48,7 @@ class BaseAnchorBasedTracktor(ABC):
         Parameters
         ----------
         frame: HxWx3 RGB image
-        tracking_anchor_indices: NxM ndarray
+        tracking_anchor_indices: NxM ndarray  (M is the number of anchors/hypothesis next to each tracked object ("K" in the paper))
         tracking_anchor_weights NxM ndarray
         tracking_classes: Nx1 ndarray of the class ids of the tracked object
 
